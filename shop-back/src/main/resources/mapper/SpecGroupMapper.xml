@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cj.shopback.mapper.SpecGroupMapper">
+
+    <resultMap id="BaseResultMap" type="com.cj.shopback.model.SpecGroup">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="spgId" column="spg_id" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,spg_id,name
+    </sql>
+</mapper>

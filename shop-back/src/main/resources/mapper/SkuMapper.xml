@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cj.shopback.mapper.SkuMapper">
+
+    <resultMap id="BaseResultMap" type="com.cj.shopback.model.Sku">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="spuId" column="spu_id" jdbcType="INTEGER"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="images" column="images" jdbcType="OTHER"/>
+            <result property="price" column="price" jdbcType="DECIMAL"/>
+            <result property="param" column="param" jdbcType="OTHER"/>
+            <result property="valid" column="valid" jdbcType="BOOLEAN"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="lastUpdateTime" column="last_update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,spu_id,title,
+        images,price,param,
+        valid,create_time,last_update_time
+    </sql>
+
+    <select id="selectPageByDto" resultMap="BaseResultMap">
+        select * from t_sku
+        <where>
+            <if test="sku.spuId !=null and sku.spuId != ''">
+                and spu_id=#{sku.spuId}
+            </if>
+            <if test="sku.title !=null and sku.title !=''">
+                and title like concat('%',#{sku.title},'%')
+            </if>
+        </where>
+
+    </select>
+</mapper>

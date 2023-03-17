@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cj.shopback.mapper.SpecParamMapper">
+
+    <resultMap id="BaseResultMap" type="com.cj.shopback.model.SpecParam">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="spgId" column="spg_id" jdbcType="INTEGER"/>
+            <result property="sppId" column="spp_id" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="numeric" column="numeric" jdbcType="BOOLEAN"/>
+            <result property="unit" column="unit" jdbcType="VARCHAR"/>
+            <result property="generic" column="generic" jdbcType="BOOLEAN"/>
+            <result property="searching" column="searching" jdbcType="BOOLEAN"/>
+            <result property="segements" column="segements" jdbcType="VARCHAR"/>
+            <result property="details" column="details" jdbcType="OTHER" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,spg_id,spp_id,
+        name,numeric,unit,
+        generic,searching,segements
+    </sql>
+    <select id="getParamsBySpuId" resultMap="BaseResultMap">
+        select spu.title,spp.* from t_spu spu left join t_spec_param spp on spu.spg_id=spp.spg_id where spu.id=#{id}
+    </select>
+</mapper>
